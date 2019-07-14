@@ -17,7 +17,7 @@ class PostsController < ApplicationController
       user_id: current_user.id
     }
     if @post.save
-      redirect_to user_post_path(cullent_user,@post), notice: "ブログを登録しました。"
+      redirect_to user_post_path(current_user, @post), notice: "ブログを登録しました。"
     else
       render :new
     end
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to user_post_path(cullent_user,@post), notice: "ブログを更新しました。"
+      redirect_to user_post_path(current_user, @post), notice: "ブログを更新しました。"
     else
       render :edit
     end
