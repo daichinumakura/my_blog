@@ -8,6 +8,7 @@
       <p><%= link_to "続きを読む", user_post_path(post.user, post), class: "btn btn-info" %></p>
     </div>
   <% end %>
+<%= paginate @posts %>
 </div>
 <div class="col-md-4">
   <div class="list-group">

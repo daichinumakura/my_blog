@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
   def index
       # @posts = Post.all.order(created_at: :desc)でも可
-      @posts = Post.order(created_at: :desc)
+      @posts = Post.page(params[:page]).order(created_at: :desc).per(4)
       @new_posts = Post.order(created_at: :desc).limit(5)
   end
 
