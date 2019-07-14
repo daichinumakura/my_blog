@@ -1,0 +1,19 @@
+  <div class="col-md-8">
+    <% @user.posts.each do |post| %>
+      <div class="article">
+        <h2>タイトル：<%= post.title %></h2>
+        <p>作成日：<%= post.created_at %></p>
+        <p><%= truncate(post.body, length: 50) %></p>
+        <p><%= link_to "続きを読む", user_post_path(@user,   post), class: "btn btn-info" %></p>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <%= image_tag @user.avatar, class: "card-img-top", alt: "著者イメージ" %>
+      <div class="card-body">
+        <h3>著者名：<%= @user.name %></h3>
+        <p>詳細：<%= @user.description %></p>
+      </div>
+    </div>
+  </div>

@@ -2,17 +2,17 @@
   <% @posts.each do |post| %>
     <div class="article">
       <h2>タイトル：<%= post.title %></h2>
-
+      <p>著者：<%= link_to post.user.name, post.user %></p>
       <p>作成日：<%= post.created_at %></p>
       <p><%= truncate(post.body, length: 50) %></p>
-      <p><%= link_to "続きを読む", post, class: "btn btn-info" %></p>
+      <p><%= link_to "続きを読む", user_post_path(post.user, post), class: "btn btn-info" %></p>
     </div>
   <% end %>
 </div>
 <div class="col-md-4">
   <div class="list-group">
     <% @new_posts.each do |post| %>
-    <%= link_to post.title, post, class: "list-group-item" %>
+    <%= link_to post.title, user_post_path(post.user, post), class: "list-group-item" %>
     <% end %>
   </div>
 </div>
