@@ -1,26 +1,27 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [ :show, :edit, :update, :destroy]
+
   def index
-    # 記事一覧用
-    @posts = Post.all
-    # 最新記事用
-    @new_posts = Post.all
+      # @posts = Post.all.order(created_at: :desc)でも可
+      @posts = Post.order(created_at: :desc)
+      @new_posts = Post.order(created_at: :desc).limit(5)
   end
 
   def new
-    @post = Post.new # フォーム用の空のインスタンスを生成する。
+    @post = Post.new
   end
 
   def create
-    @post = Post.new(post_params) # ストロングパラメータを引数に
+    @post = Post.new(post_params)
     if @post.save
       redirect_to @post, notice: "ブログを登録しました。"
     else
       render :new
     end
   end
-  
+
   def show
-  @post = Post.find(params[:id])
+    @post = Post.find(params[:id])
   end
 
   def edit
@@ -44,7 +45,11 @@ class PostsController < ApplicationController
 
   private
 
-  def post_params # ストロングパラメータを定義する
+  def post_params
     params.require(:post).permit(:title, :body)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 end
