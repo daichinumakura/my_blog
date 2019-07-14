@@ -1,6 +1,7 @@
 <div class="col-md-10 offset-md-1 mt-5">
   <h2><%= @post.title %></h2>
   <p>投稿日:<%= @post.created_at %></p>
+  <p>カテゴリー:<%= @post.category&.name %></p>
   <hr>
   <%= simple_format(@post.body) %>
   <hr>
